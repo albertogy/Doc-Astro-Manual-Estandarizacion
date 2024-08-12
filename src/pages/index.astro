@@ -1,0 +1,68 @@
+---
+import PostView from "../components/PostView.astro";
+import IndexPage from "../layouts/IndexPage.astro";
+import { getCollectionByName } from "../utils/getCollectionByName";
+import { orderBySticky } from "../utils/orderBySticky";
+import { site } from "../consts";
+import Pagination from "../components/Pagination.astro";
+import _ from "lodash";
+
+let currentPage = 1;
+let blogs = await getCollectionByName("feed");
+let totalPage = _.ceil(_.divide(blogs.length, site.postPageSize));
+
+let sortedPosts = await orderBySticky(blogs);
+if (sortedPosts.length > site.postPageSize) {
+  sortedPosts = sortedPosts.splice(0, site.postPageSize);
+
+}
+---
+
+<IndexPage>
+
+  
+  <div class="flex items-center h-4/6 font-semibold">
+    <div class="flex flex-col text-center text-3xl">
+      <p>
+        Manual de Estandarización <span class="text-skin-active"
+          >Plan Director.</span
+        >
+      </p>
+      <span class="text-start font-thin text-lg"
+        >Se describe su uso y funcionamiento.</span
+      >   
+
+      <div class=" relative left-0 mt-10 overflow-x-auto">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Fecha
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Versión
+                    </th>                    
+                </tr>
+            </thead>
+            <tbody>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        17-02-2024
+                    </th>
+                    <td class="px-6 py-4">
+                        1.0
+                    </td>                    
+                </tr>                
+            </tbody>
+        </table>
+      </div>
+
+
+
+    </div>
+
+    
+  </div>
+
+  
+</IndexPage>
