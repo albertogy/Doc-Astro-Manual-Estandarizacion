@@ -1,11 +1,11 @@
 ---
 import IndexPage from "src/layouts/IndexPage.astro";
-import {site} from "../../consts";
+import { site } from "../../consts";
 import dayjs from "dayjs";
 import getPostsByYear from "src/utils/getPostsByYear";
-import {sortPostsByDate} from "src/utils/sortPostsByDate";
+import { sortPostsByDate } from "src/utils/sortPostsByDate";
 import Pagination from "src/components/Pagination.astro";
-import {getCollectionByName} from "../../utils/getCollectionByName";
+import { getCollectionByName } from "../../utils/getCollectionByName";
 import _ from "lodash";
 
 let posts = await getCollectionByName("blog");
@@ -22,21 +22,49 @@ let resultPosts = getPostsByYear(sortedPosts);
       .sort((a, b) => Number(b) - Number(a))
       .map((year) => (
         <div>
-          <div class="text-2xl font-extrabold my-4">{year}</div>
+          {/* <div class="text-2xl font-extrabold my-4">{year}</div> */}
           <ul>
-            {resultPosts[year].map((post) => (
-              <li style="list-style-type: disc;" class="ml-4 my-2">
-                <a href={'/' + post.collection + '/' + post.slug}>
-                  <span class="mr-4">
+            {resultPosts[year].map(async (post) => (
+              <li style="list-style-type: disc;" class="ml-4 my-2 hover:text-skin-active">
+                <a href={"/" + post.collection + "/" + post.slug}>
+                  {/* <span class="mr-4">
                     {dayjs(post.data.date).format("YYYY-MM-DD")}
-                  </span>
-                  {post.data.title}
+                  </span> */}
+                  {post.data.title}                  
                 </a>
+              </li>
+              <li>
+                {(await post.render())["headings"]
+                    .filter((head) => head.text && head.depth >= 2)
+                    .map((h) => (
+                      <a href={"/" + post.collection + "/" + post.slug + "#" + h['slug']}><div class={`heading-level-${h.depth} text-sm hover:text-skin-active/80 cursor-pointer`}>{h["text"]}</div></a>
+                      
+
+                    ))}
+
               </li>
             ))}
           </ul>
         </div>
       ))
   }
-  <Pagination currentPage={1} totalPage={totalPage} prefixUrl="/archive/"/>
+  <Pagination currentPage={1} totalPage={totalPage} prefixUrl="/archive/" />
 </IndexPage>
+
+<style>
+  .heading-level-1 {
+    margin-left: 0;
+  }
+
+  .heading-level-2 {
+    margin-left: 20px;
+  }
+
+  .heading-level-3 {
+    margin-left: 40px;
+  }
+
+  .heading-level-4 {
+    margin-left: 60px;
+  }
+</style>

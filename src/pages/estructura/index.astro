@@ -1,0 +1,58 @@
+---
+import BlogPost from "../../layouts/BlogPost.astro";
+const posts = await Astro.glob("../../content/blog/**/*.md");
+
+// Iterar sobre los posts para obtener los encabezados
+const postHeadings = await Promise.all(
+  posts.map(async (post) => {
+    const headings = await post.getHeadings();
+    return {
+      url: post.url,
+      title: post.frontmatter.title,
+      headings,
+    };
+  })
+);
+
+---
+
+<!-- <BlogPost>
+  <div>
+    <h1>Lista de publicaciones</h1>
+
+    {
+      postHeadings.map(({ url, title, headings }) => (
+        <div>
+          <h2>
+            <a href={url}>{title}</a>
+          </h2>
+          <ul>
+            {headings.map((heading) => (
+              <li class={`heading-level-${heading.depth}`}>
+                <strong>{"h" + heading.depth}:</strong> {heading.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</BlogPost> -->
+
+<style>
+  .heading-level-1 {
+    margin-left: 0;
+  }
+
+  .heading-level-2 {
+    margin-left: 20px;
+  }
+
+  .heading-level-3 {
+    margin-left: 40px;
+  }
+
+  .heading-level-4 {
+    margin-left: 60px;
+  }
+</style>

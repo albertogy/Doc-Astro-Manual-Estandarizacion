@@ -1,5 +1,5 @@
 export  const es = {
-    'home.sticky': 'Sticky',
+    'home.sticky': 'Pendiente',
     'home.goBack': 'Volver',
     'home.moreArticles': 'Mas artículos',
     'home.readMore': 'Detalle',

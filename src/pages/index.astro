@@ -14,14 +14,11 @@ let totalPage = _.ceil(_.divide(blogs.length, site.postPageSize));
 let sortedPosts = await orderBySticky(blogs);
 if (sortedPosts.length > site.postPageSize) {
   sortedPosts = sortedPosts.splice(0, site.postPageSize);
-
 }
 ---
 
 <IndexPage>
-
-  
-  <div class="flex items-center xl:h-2/5 font-semibold  ">
+  <div class="flex items-center xl:h-2/5 font-semibold">
     <div class="flex flex-col text-left text-pretty text-3xl mt-12">
       <p>
         Manual de Estandarización <span class="text-skin-active"
@@ -30,39 +27,33 @@ if (sortedPosts.length > site.postPageSize) {
       </p>
       <span class="text-start font-thin text-lg"
         >Se describe su uso y funcionamiento.</span
-      >   
-
-      <div class=" relative left-0 mt-10 overflow-x-auto">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Fecha
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Versión
-                    </th>                    
-                </tr>
-            </thead>
-            <tbody>
-                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        17-02-2024
-                    </th>
-                    <td class="px-6 py-4">
-                        1.0
-                    </td>                    
-                </tr>                
-            </tbody>
+      >
+    
+      <div class="relative left-0 mt-10 overflow-x-auto">
+        <table
+          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 border"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3"> Fecha </th>
+              <th scope="col" class="px-6 py-3"> Versión </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                17-02-2024
+              </th>
+              <td class="px-6 py-4"> 1.0 </td>
+            </tr>
+          </tbody>
         </table>
       </div>
-
-
-
     </div>
-
-    
   </div>
-
-  
 </IndexPage>
