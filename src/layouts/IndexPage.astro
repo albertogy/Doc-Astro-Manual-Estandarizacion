@@ -1,50 +1,51 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Profile from '../components/Profile.astro'
-import BlogAside from '../components/BlogAside.astro'
-import Comment from '../components/Comment.astro'
-import Donate from '../components/Donate.astro'
-import {donate, comment} from "../consts";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Profile from "../components/Profile.astro";
+import BlogAside from "../components/BlogAside.astro";
+import Comment from "../components/Comment.astro";
+import Donate from "../components/Donate.astro";
+import { donate, comment } from "../consts";
 // Supports weights 100-900
 import "@fontsource-variable/onest";
 
-
-const {frontmatter = {comment: false, donate: false}} = Astro.props
+const { frontmatter = { comment: false, donate: false } } = Astro.props;
 ---
 
 <html lang="en">
-<BaseHead/>
+  <BaseHead />
 
-<body class="bg-skin-secondary relative">
-<Header/>
-<main class="container p-4 pt-20 cursor-default text-skin-base pb-32 min-h-full relative" id="app">
-  <div class="grid grid-cols-4 gap-8">
-    <div class="col-span-4 xl:col-span-3 space-y-8">
-      <slot></slot>      
-      {
-        comment.enable && frontmatter.comment &&
-        <Comment></Comment>
-      }
+  <body class="bg-skin-fill relative">
+    <div
+      class="absolute top-0 z-[-2] h-screen w-screen opacity-100 bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+    >
     </div>
-    <div>
-      <div class="hidden xl:block space-y-6">
-        <Profile></Profile>
-        <BlogAside></BlogAside>
+    <Header />
+    <main
+      class="container p-4 pt-20 cursor-default text-skin-base pb-32 min-h-full relative  z-10"
+      id="app"      
+    >
+    
+      <div class="grid grid-cols-4 gap-8">
+        <div class="col-span-4 xl:col-span-3 space-y-8">
+          <slot />
+          {comment.enable && frontmatter.comment && <Comment />}
+        </div>
+        <div>
+          <div class="hidden xl:block space-y-6">
+            <Profile />
+            <BlogAside />
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-  <Footer/>
-</main>
-</body>
-<script>
-  document.body.querySelectorAll("a").forEach(item => {
-    item.setAttribute("rel", "nofollow noreferrer");
-  });
-</script>
+      <Footer />
+    </main>
+  </body><script>
+    document.body.querySelectorAll("a").forEach((item) => {
+      item.setAttribute("rel", "nofollow noreferrer");
+    });
+  </script>
 </html>
 
-<style>
-  
-</style>
+<style></style>

@@ -1,4 +1,4 @@
-@import url('./github-markdown.css');
+@import url("./github-markdown.css");
 @import "remixicon/fonts/remixicon.css";
 @import "tocbot/dist/tocbot.css";
 
@@ -18,13 +18,11 @@
 html {
   height: 100%;
   scroll-padding-top: 72px;
-  font-family: 'Onest Variable', sans-serif;
+  font-family: "Onest Variable", sans-serif;
 }
 
 body {
-  height: 100%;  
-  
-  
+  height: 100%;
 }
 
 ol,
@@ -38,14 +36,14 @@ menu {
 @layer base {
   :root,
   html[data-theme="light"] {
-    --color-fill: 241, 241, 241;
+    --color-fill: 255, 255, 255;
     --color-fill-secondary: 251, 251, 251;
     --color-card: 241, 241, 241;
     --color-text: 80, 73, 69;
     --color-text-active: 181, 118, 20;
     --color-border: 104, 157, 106;
     --color-border-active: 14, 192, 124;
-    --color-modal: 52, 58, 64;
+    --color-fondo: 250, 249, 253;
   }
 
   html[data-theme="dark"] {
@@ -57,6 +55,7 @@ menu {
     --color-border: 214, 93, 14;
     --color-border-active: 7, 102, 120;
     --color-modal: 251, 251, 251;
+    --color-fondo: 48, 48, 55;
   }
 
   #sun-icon,
@@ -78,21 +77,20 @@ menu {
   html[data-theme="dark"] #logo-white {
     display: block;
   }
-
 }
 
 @layer components {
-  /* 导航栏的按钮样式 */
   .header-link-active {
-    @apply underline underline-offset-4 decoration-wavy decoration-skin-active;
+    @apply text-skin-active;
   }
 
-  .header-link-hover {
-    @apply underline underline-offset-4  decoration-skin-base;
+  .header-link-hover:not(.header-link-active) {
+    @apply text-skin-base/80;
   }
+  
 
   .header-btn {
-    @apply cursor-pointer border rounded py-1 px-2 bg-skin-fill hover:text-skin-active mr-4 z-10
+    @apply cursor-pointer border rounded py-1 px-2 bg-skin-fill hover:text-skin-active mr-4 z-10;
   }
 
   /*侧边栏每个栏目共有样式*/
@@ -113,15 +111,17 @@ menu {
     @apply cursor-pointer;
   }
 
-  /* markdown内容图片样式 */
-  .image-cols-2{
-    @apply grid gap-4 grid-cols-2 my-2
+  .image-cols-2 {
+    @apply grid gap-4 grid-cols-2 my-2;
   }
-  .image-cols-3{
-    @apply grid gap-4 grid-cols-3 my-2
+  .image-cols-3 {
+    @apply grid gap-4 grid-cols-3 my-2;
   }
-  .image-cols-4{
-    @apply grid gap-4 grid-cols-4 my-2
+  .image-cols-4 {
+    @apply grid gap-4 grid-cols-4 my-2;
+  }
+  .pendiente {
+    @apply bg-[#dbeafe] text-[#1e40af] text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-[#374151] dark:text-[#60a5fa] border border-[#60a5fa];
   }
 }
 
@@ -132,14 +132,14 @@ menu {
 /* 分割线 */
 .divider-vertical {
   position: relative;
-  top: -.06em;
+  top: -0.06em;
   display: inline-block;
-  height: .9em;
+  height: 0.9em;
   margin: 0 8px;
   vertical-align: middle;
   border-top: 0;
-  border-left: 1px solid rgba(0, 0, 0, .06);
-  background-color: rgba(var(--color-text), .3);
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+  background-color: rgba(var(--color-text), 0.3);
 }
 
 .divider-horizontal {
@@ -149,7 +149,7 @@ menu {
   height: 1px;
   min-width: 100%;
   margin: 16px 0;
-  background-color: rgba(var(--color-text), .3);
+  background-color: rgba(var(--color-text), 0.3);
 }
 
 /* 重写markdown样式 */
@@ -166,7 +166,7 @@ a {
   line-height: 26px;
 }
 
-/* 修改waline评论侧边栏样式 */
+/* waline */
 .waline-comment-content-author {
   text-align: end;
   margin-bottom: 6px;
@@ -176,14 +176,14 @@ a {
   height: 24px;
 }
 
-/*  网站列表样式清空 */
+/*  */
 ul,
 ol,
 menu {
   list-style: none;
 }
 
-/* markdown 列表样式 */
+/* markdown */
 .markdown-body menu,
 .markdown-body ul {
   list-style: disc;
@@ -193,9 +193,13 @@ menu {
   list-style: decimal;
 }
 
-.markdown-body img {
-  /* 修改图片居中 */
+.markdown-body p > img, .markdown-body li > img  {
   /* margin: 0 auto; */
+  background: var(--color-fondo) !important;
+}
+
+.markdown-body table {
+  font-size: 13px;
 }
 
 /* 修改滚动条样式 */
@@ -222,7 +226,7 @@ menu {
   white-space: nowrap;
   vertical-align: 2px;
   color: rgb(var(--color-fill));
-  background-color:  rgb(var(--color-text));
+  background-color: rgb(var(--color-text));
   opacity: 0.8;
   border-radius: 2px 6px;
 }
@@ -242,8 +246,7 @@ menu {
   display: none !important;
 }
 
-
-.avatar {  
+.avatar {
   padding: 4px;
   width: 96px;
   height: 96px;
@@ -251,6 +254,6 @@ menu {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
-.expressive-code{
-  margin: 1rem 0 ;
+.expressive-code {
+  margin: 1rem 0;
 }

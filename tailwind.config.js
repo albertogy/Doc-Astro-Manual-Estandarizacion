@@ -46,6 +46,7 @@ export default {
         secondary: withOpacity("--color-fill-secondary"),
         card: withOpacity("--color-card"),
         modal: withOpacity("--color-modal"),
+        fondo: withOpacity("--color-fondo"),
       },
     },
     textDecorationColor: {

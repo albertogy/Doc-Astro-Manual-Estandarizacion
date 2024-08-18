@@ -18,11 +18,11 @@
 export const site = {
   title: 'Manual de Estandarización Plan Director', // requerido
   versiones: [{ version: '1.0', fecha: '17-02-2022' }],
-  favicon: '/favicon.png', // requerido
+  favicon: '/logo40.png', // requerido
   description: '¡Bienvenido al sitio de documentacion de Plandir Web.!',
   author: "aogayar@dipujaen.es", // requerido
   avatar: '/avatar-dip.png', // requerido
-  motto: 'Manual de Estandarización Plan Director.',
+  motto: 'Normas de Estandarización Plan Director.',
   url: 'https://wiki.dipujaen.es',
   recentBlogSize: 5,
   archivePageSize: 25,
@@ -37,7 +37,7 @@ export const site = {
  */
 export const config = {
   busuanzi: false,
-  lang: 'es', // en | zh-cn
+  lang: 'es',
   codeFoldingStartLines: 16, // Necesita reiniciar el proyecto para que surta efecto
 }
 
@@ -50,7 +50,7 @@ export const config = {
  */
 export const categories = [
   {
-    name: "Blog",
+    name: "Indice",
     iconClass: "ri-draft-line",
     href: "/blog/1",
   },
@@ -78,19 +78,7 @@ export const categories = [
         name: 'Empleados',
         iconClass: 'ri-information-line',
         href: '/about',
-      },
-      {
-        name: 'Terceros/Acreedores',
-        iconClass: 'ri-user-5-line',
-        href: '/friends',
-        target: '_self',
-      },
-      {
-        name: 'Acreedores',
-        iconClass: 'ri-user-5-line',
-        href: '/friends',
-        target: '_self',
-      },
+      }     
     ]
   },
   {
