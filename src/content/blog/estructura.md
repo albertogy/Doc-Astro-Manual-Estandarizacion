@@ -2,7 +2,7 @@
 title: Estructura global de las aplicaciones y módulos.
 date: 2024-08-11
 description: Agrupación de componentes en módulos y supramódulos para una organización eficiente.
-tags: ["módulos", "agrupación de módulos"]
+tags: ["módulos", "estructura"]
 ---
 
 # Estructura global de las aplicaciones y módulos
